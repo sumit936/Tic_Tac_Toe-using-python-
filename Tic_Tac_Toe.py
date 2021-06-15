@@ -1,8 +1,9 @@
-#Imnporting relevant libraries
+# Imnporting relevant libraries
 from random import randint
 import os
 
-#function for displying the board
+# function for displying the board
+
 
 def display_board(board):
     print(f'|\t{board[1]}\t|\t{board[2]}\t|\t{board[3]}\t|')
@@ -15,11 +16,13 @@ def display_board(board):
     print('|\t\t|\t\t|\t\t|')
     print('-'*50)
 
-#function for taking player's input
+# function for taking player's input
+
+
 def player_input():
     while True:
         player1 = input("Please pick a marker 'X' or 'O': ").upper()
-        if player1!='X' and player1!='O':
+        if player1 != 'X' and player1 != 'O':
             continue
         else:
             if player1 == "X":
@@ -29,17 +32,21 @@ def player_input():
             break
     return (player1, player2)
 
-#function for updataing the board list object
+# function for updataing the board list object
+
+
 def place_marker(board, marker, position):
     board[position] = marker
 
 # function to check the win of either player
 
+
 def win_check(board, mark):
 
-    if ((board[1]==board[2]==board[3]==mark) or (board[4]==board[5]==board[6]==mark) or (board[7]==board[8]==board[9]==mark) or
-    (board[1]==board[4]==board[7]==mark) or (board[2]==board[5]==board[8]==mark) or (board[3]==board[6]==board[9]==mark) or
-    (board[1]==board[5]==board[9]==mark) or (board[3]==board[5]==board[7]==mark)
+    if ((board[1] == board[2] == board[3] == mark) or (board[4] == board[5] == board[6] == mark) or (board[7] == board[8] == board[9] == mark) or
+    (board[1] == board[4] == board[7] == mark) or (board[2] == board[5] == board[8] == mark) or (board[3] == board[6] == board[9] == mark) or
+    (board[1] == board[5] == board[9] == mark) or (
+        board[3] == board[5] == board[7] == mark)
     ):
         return True
     return False
@@ -53,19 +60,21 @@ def choose_first():
         return 'Player 1'
 # function to check if the particular position is available
 
-def space_check(board,position):
 
-    return board[position]==''
+def space_check(board, position):
 
-# function to check if the board is full 
+    return board[position] == ''
+
+# function to check if the board is full
+
 
 def full_board_check(board):
-    for i in board:
-        if i=='':
+    for i in range(1, 10):
+        if space_check(board, i):
             return False
     return True
 
-#function to ask for the palyer's next position
+# function to ask for the palyer's next position
 
 def player_choice(board):
     while True:
@@ -81,7 +90,7 @@ def player_choice(board):
             continue
     return pos
 
-#function to ask if player wants to replay
+# function to ask if player wants to replay
 def replay():
     while True:
         rep = input('Want to replay? [y/n]: ').lower()
@@ -89,12 +98,13 @@ def replay():
             print('Enter valid input!')
             continue
         elif rep=='y':
+            clear()
             return True
         else:
             break
     return False
 
-#function to clear the output screen
+# function to clear the output screen
 
 def clear(): 
   
@@ -106,7 +116,7 @@ def clear():
     else: 
         _ = os.system('clear') 
 
-#Driver Function
+# Driver Function
 if __name__ == '__main__':
     while True:
         try:
@@ -115,7 +125,7 @@ if __name__ == '__main__':
             while True:
                 real_board = ['']*10
                 display_board(b)
-                print('\n\nNumbers is representing the positions!')
+                print('\n\nNumbers are representing the positions!')
                 player1, player2 = player_input()
                 turn = choose_first()
                 play_game = input('\n\nAre you ready to play? [y/n].')
